@@ -7,17 +7,33 @@
 
 
 }
-<div class="w-100 h-100 d-flex justify-content-center align-items-center">
-    <form method="post" class="h-75 bg-success bg-opacity-10 d-flex flex-column justify-content-center" asp-validation-summary="ModelOnly">
+<div class="w-100 h-100 d-flex justify-content-center align-items-center bg-light" style="min-height: 100vh;">
+    <form method="post" 
+          class="p-4 bg-white shadow rounded-3 d-flex flex-column" 
+          style="width: 100%; max-width: 400px;" 
+          asp-validation-summary="ModelOnly">
         @Html.AntiForgeryToken()
-        <div>
-            <label>Email:</label>
-            <input type="email"  asp-for="Email" />
+        
+        <h3 class="text-center mb-4">Iniciar Sesión</h3>
+        
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" 
+                   class="form-control" 
+                   id="email" 
+                   asp-for="Email" />
         </div>
-        <div>
-            <label>Password:</label>
-            <input type="password" asp-for="Password" />
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" 
+                   class="form-control" 
+                   id="password" 
+                   asp-for="Password" />
         </div>
-        <button type="submit">Login</button>
+
+        <button type="submit" class="btn btn-success w-100">Login</button>
     </form>
 </div>
+
+
