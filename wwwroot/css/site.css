@@ -1,0 +1,19 @@
+html, body {
+    height: 100%; /* Asegura que toda la página ocupe el 100% del viewport */
+    width: 100%;
+    margin: 0; /* Elimina cualquier margen predeterminado */
+}
+.bg-black {
+    background-color: black !important;
+    color: white !important;
+}
+
+.bg-blue {
+    background-color: #0d0d73 !important;
+    color: white !important;
+}
+
+.bg-white {
+    background-color: white !important;
+    color: black !important;
+}

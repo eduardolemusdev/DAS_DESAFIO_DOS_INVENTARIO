@@ -1,0 +1,98 @@
+﻿@using Repositories
+@model IEnumerable<Product>
+
+<h2>Product List</h2>
+
+<form method="get" class="mb-3">
+    <div class="row">
+        <div class="col-md-3">
+            <label for="minPrice" class="form-label">Min Price</label>
+            <input type="number" step="0.01" id="minPrice" name="minPrice" class="form-control" value="@ViewBag.MinPrice" />
+        </div>
+        <div class="col-md-3">
+            <label for="maxPrice" class="form-label">Max Price</label>
+            <input type="number" step="0.01" id="maxPrice" name="maxPrice" class="form-control" value="@ViewBag.MaxPrice" />
+        </div>
+        <div class="col-md-3">
+            <label for="minQuantity" class="form-label">Min Quantity</label>
+            <input type="number" id="minQuantity" name="minQuantity" class="form-control" value="@ViewBag.MinQuantity" />
+        </div>
+        <div class="col-md-3">
+            <label for="maxQuantity" class="form-label">Max Quantity</label>
+            <input type="number" id="maxQuantity" name="maxQuantity" class="form-control" value="@ViewBag.MaxQuantity" />
+        </div>
+    </div>
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Apply Filters</button>
+        <a href="/" class="btn btn-secondary">Clear Filters</a>
+    </div>
+</form>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Product ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <th scope="row">@product.Id</th>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Price.ToString("C")</td>
+                <td>@product.Quantity</td>
+                <td>
+                    <a href="/Products/Edit/@product.Id" class="btn btn-sm btn-primary">Edit</a>
+                    <button onclick="confirmDelete('@product.Id')" class="btn btn-sm btn-danger">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="6">
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        @for (var i = 1; i <= ViewBag.TotalPages; i++)
+                        {
+                            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                                <a class="page-link" href="?page=@i&minPrice=@ViewBag.MinPrice&maxPrice=@ViewBag.MaxPrice&minQuantity=@ViewBag.MinQuantity&maxQuantity=@ViewBag.MaxQuantity">@i</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<script>
+    async function confirmDelete(productId) {
+        if (confirm("Are you sure you want to delete this product?")) {
+            try {
+                const response = await fetch(`https://localhost:7017/Products/Delete/${productId}`, {
+                    method: 'DELETE',
+                    
+                });
+                console.log(response)
+                if (response.ok) {
+                    alert("Product deleted successfully!");
+                    window.location.reload(); 
+                } else {
+                    alert("Failed to delete the product. Please try again.");
+                }
+            } catch (error) {
+                console.error("Error deleting the product:", error);
+                alert("An error occurred. Please try again.");
+            }
+        }
+    }
+</script>
+

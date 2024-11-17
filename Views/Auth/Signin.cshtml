@@ -1,0 +1,23 @@
+﻿@using DAS_DESAFIO_DOS_INVENTARIO.Controllers.Validations
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @model InputSignin
+
+
+}
+<div class="w-100 h-100 d-flex justify-content-center align-items-center">
+    <form method="post" class="h-75 bg-success bg-opacity-10 d-flex flex-column justify-content-center" asp-validation-summary="ModelOnly">
+        @Html.AntiForgeryToken()
+        <div>
+            <label>Email:</label>
+            <input type="email"  asp-for="Email" />
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" asp-for="Password" />
+        </div>
+        <button type="submit">Login</button>
+    </form>
+</div>
