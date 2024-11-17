@@ -43,7 +43,7 @@ namespace DAS_DESAFIO_DOS_INVENTARIO.Controllers
 
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, inputSignin.Email),
+                    new Claim(ClaimTypes.Email, inputSignin.Email),
                     new Claim(ClaimTypes.Role, signinResult.Role.Name),
                 };
 
