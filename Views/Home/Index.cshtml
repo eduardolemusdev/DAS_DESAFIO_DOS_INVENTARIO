@@ -1,4 +1,5 @@
-﻿@using Repositories
+﻿@using DAS_DESAFIO_DOS_INVENTARIO.Repositories
+
 @model IEnumerable<Product>
 
 <h2>Product List</h2>
@@ -18,12 +19,7 @@
             </select>
         </div>
     </div>
-    <!-- Botón para abrir el modal -->
-    <divn class="row mt-3">
-        <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addProductModal">
-            Add New Product
-        </button>
-    </divn>
+    
     <div class="row">
         <div class="col-md-3">
             <label for="minPrice" class="form-label">Min Price</label>
@@ -45,6 +41,13 @@
     <div class="mt-3">
         <button type="submit" class="btn btn-primary">Apply Filters</button>
         <a href="/" class="btn btn-secondary">Clear Filters</a>
+       
+        
+    </div>
+    <div class="row mt-3">
+        <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addProductModal">
+            Add New Product
+        </button>
     </div>
 </form>
 

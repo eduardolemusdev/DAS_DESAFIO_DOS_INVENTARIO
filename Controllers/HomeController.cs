@@ -1,9 +1,8 @@
-using BussinesLogic;
 using DAS_DESAFIO_DOS_INVENTARIO.Models;
+using DAS_DESAFIO_DOS_INVENTARIO.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using Repositories;
 using System.Diagnostics;
 using System.Security.Claims;
 
@@ -12,13 +11,9 @@ namespace DAS_DESAFIO_DOS_INVENTARIO.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly RegisterProductService _registerProductService;
         private readonly IProductRepository _productRepository;
-        public HomeController(ILogger<HomeController> logger, RegisterProductService r, IProductRepository productRepository)
+        public HomeController(IProductRepository productRepository)
         {
-            _logger = logger;
-            _registerProductService = r;
             _productRepository = productRepository;
         }
 

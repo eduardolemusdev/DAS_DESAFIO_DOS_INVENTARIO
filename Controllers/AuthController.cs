@@ -1,5 +1,5 @@
-﻿using BussinesLogic.Auth;
-using DAS_DESAFIO_DOS_INVENTARIO.Controllers.Validations;
+﻿using DAS_DESAFIO_DOS_INVENTARIO.Controllers.Validations;
+using DAS_DESAFIO_DOS_INVENTARIO.Servicios;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;

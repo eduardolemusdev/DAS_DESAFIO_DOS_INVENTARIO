@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using DAS_DESAFIO_DOS_INVENTARIO.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Repositories;
 using System.Diagnostics;
 using System.Security.Claims;
 

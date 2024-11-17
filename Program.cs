@@ -1,8 +1,7 @@
-using BussinesLogic;
-using BussinesLogic.Auth;
+using DAS_DESAFIO_DOS_INVENTARIO.Repositories;
+using DAS_DESAFIO_DOS_INVENTARIO.Servicios;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using Repositories;
 
 namespace DAS_DESAFIO_DOS_INVENTARIO
 {
@@ -24,7 +23,6 @@ namespace DAS_DESAFIO_DOS_INVENTARIO
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IAuthService, AuthService>();
-            builder.Services.AddScoped<RegisterProductService>();
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
