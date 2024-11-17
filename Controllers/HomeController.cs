@@ -35,6 +35,9 @@ namespace DAS_DESAFIO_DOS_INVENTARIO.Controllers
             filter.Page = page;
             filter.PageSize = pageSize;
 
+
+
+
             ViewData["ProductFilter"] = filter;
 
 
@@ -46,16 +49,18 @@ namespace DAS_DESAFIO_DOS_INVENTARIO.Controllers
                 ViewData["TotalPages"] = productsResult.TotalPages;
             }
 
+            Debug.WriteLine($"Search criteria {filterStrategy}: => {target}");
+
             if (filterStrategy == "name" && !target.IsNullOrEmpty())
             {
-                var productsResult = _productRepository.GetProducts(filter);
+                var productsResult = _productRepository.GetProductsByName(target, filter);
                 products = productsResult.Data;
                 ViewData["TotalPages"] = productsResult.TotalPages;
             }
 
             if (filterStrategy == "description" && !target.IsNullOrEmpty())
             {
-                var productsResult = _productRepository.GetProducts(filter);
+                var productsResult = _productRepository.GetProductsByDescription(target, filter);
                 products = productsResult.Data;
                 ViewData["TotalPages"] = productsResult.TotalPages;
             }
