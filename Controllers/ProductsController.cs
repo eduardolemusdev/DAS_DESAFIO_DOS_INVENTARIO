@@ -10,12 +10,10 @@ namespace DAS_DESAFIO_DOS_INVENTARIO.Controllers
     public class ProductsController : Controller
     {
         private IProductRepository _productRepository;
-        private readonly ILogger _logger;
 
-        public ProductsController(IProductRepository productRepository, ILogger<ProductsController> logger)
+        public ProductsController(IProductRepository productRepository)
         {
             _productRepository = productRepository;
-            _logger = logger;
         }
 
         [HttpDelete]
@@ -23,8 +21,9 @@ namespace DAS_DESAFIO_DOS_INVENTARIO.Controllers
         public IActionResult Delete(int? id)
         {
 
-            Debug.WriteLine($"Product id: {id}");
-            _logger.LogInformation($"Product id: {id}");
+            Debug.WriteLine($"Product id *: {id}");
+
+
             if (!id.HasValue)
             {
                 return NotFound();
