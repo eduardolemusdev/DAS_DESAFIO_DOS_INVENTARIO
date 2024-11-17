@@ -24,6 +24,7 @@ namespace DAS_DESAFIO_DOS_INVENTARIO.Controllers
 
         public IActionResult Index(decimal? minPrice, decimal? maxPrice, int? minQuantity, int? maxQuantity, string? filterStrategy, string? target, int page = 1, int pageSize = 10)
         {
+            _setUserType();
             _generateNavbarClass();
 
             ProductFilter filter = new ProductFilter();
@@ -103,6 +104,18 @@ namespace DAS_DESAFIO_DOS_INVENTARIO.Controllers
             }
 
             ViewData["NavbarClass"] = navbarClass;
+        }
+
+
+        private void _setUserType()
+        {
+            var role = User.FindFirst(ClaimTypes.Role)?.Value;
+            if (role == "admin" || role == "client")
+            {
+                Debug.WriteLine(role);
+                ViewData["UserType"] = role;
+            }
+
         }
     }
 }
